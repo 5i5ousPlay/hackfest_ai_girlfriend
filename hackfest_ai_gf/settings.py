@@ -38,9 +38,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # REST FRAMEWORK
     'rest_framework',
+
+    # AUTHENTICATION
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'phonenumber_field',
+
+    # API
     'chatbot',
+    'users',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -53,6 +71,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'hackfest_ai_gf.urls'
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 TEMPLATES = [
     {
@@ -105,6 +125,29 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+REST_USE_JWT = True
+
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'users.serializers.CustomRegisterSerializer'
+}
+
+JWT_AUTH_COOKIE = 'jwt-auth'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+
+    'DATETIME_FORMAT': '%Y-%m-%d %I:%M:%S %p',
+
+}
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+ACCOUNT_LOGOUT_ON_GET = True
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -126,4 +169,3 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
