@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+@font-face {
+    font-family: "Quicksand";   /*Can be any text*/
+    src: local("Quicksand"),
+      url("./font/Quicksand.ttf") format("truetype");
+  }
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Quicksand";
+    font-weight: 400;
+  }

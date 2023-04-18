@@ -1,0 +1,58 @@
+
+
+.h2{
+    font-family:"Quicksand";
+    font-weight: bold;
+}
+  
+.Container{
+    display:table;
+    display:grid;
+
+}
+#mommywindow{
+    align-items: left;
+    background-color: #00071B;
+    width: 100%;
+    display: flex;
+}
+#actualmommy{
+    width: 50%;
+}
+#mb-3{
+    width: 50%;
+}
+#chatsystem{
+    align-items: right;
+    max-width: 50%;
+    z-index: -1;
+}
+#Chatimg{
+    position: absolute;
+    align-items: center;
+    margin-top: -5%;
+
+    
+}
+#ChatSytem{
+    overflow-y: scroll;
+
+}
+
+#AI{
+    width: 55%;
+    margin-top: auto;
+    margin-left: 10%;
+}
+#btn {
+	display: block;
+	font-size: 1.5em;
+	margin-block-start: 0.83em;
+	margin-block-end: 0.83em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	font-weight: bold;
+}
+#Storyline{
+    margin: 10%;
+}
