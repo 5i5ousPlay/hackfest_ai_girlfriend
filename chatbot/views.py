@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.conf import settings
-from rest_framework.decorators import api_view
+from users.permissions import IsSubscribed
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
 from django.views.decorators.csrf import csrf_exempt
 import openai
 
@@ -23,3 +25,10 @@ def chat(request):
     response = completion.choices[0].message
 
     return JsonResponse({"bot_response": response})
+
+@csrf_exempt
+@api_view(['GET'])
+@permission_classes([IsAuthenticated & IsSubscribed])
+def storyline_view(request):
+    # Cheska's Storyline stuff
+    pass

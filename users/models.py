@@ -15,3 +15,4 @@ class CustomUser(AbstractUser):
     number_of_dependents = models.IntegerField(null=True)
     monthly_income = models.FloatField(null=True)
     medical_conditions = models.TextField(null=True)
+    permission_class = models.CharField(max_length=255, default='UNSUBSCRIBED')

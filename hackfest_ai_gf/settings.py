@@ -26,7 +26,9 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['https://d3b1-175-176-18-232.ngrok-free.app']
 
 
 # Application definition
@@ -51,11 +53,13 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    # EXTRA LIBRARIES
     'phonenumber_field',
 
     # API
     'chatbot',
     'users',
+    'payment',
 ]
 
 SITE_ID = 1
@@ -103,6 +107,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# XENDIT
+XENDIT_HACKFEST = config('XENDIT_HACKFEST')
+XENDIT_CALLBACK = config('XENDIT_CALLBACK')
 
 # OPENAI
 HACKFEST_OPENAI_SECRET_KEY = config('HACKFEST_OPENAI_SECRET_KEY')
