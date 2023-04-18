@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from payment.views import xendit_webhook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +27,9 @@ urlpatterns = [
     # USERS & AUTHENTICATION
     path('api/v1/users/', include('users.urls')),
 
+    # PAYMENT
+    path('api/v1/payment/', include('payment.urls')),
+
+    # XENDIT WEBHOOK
+    path('payment/xendit-webhook/', xendit_webhook, name='xendit-webhook')
 ]
