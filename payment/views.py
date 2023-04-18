@@ -28,7 +28,7 @@ class CsrfExemptSessionAuthentication(SessionAuthentication):
 class PaymentListView(generics.ListAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         return Payment.objects.filter(user=self.request.user)
@@ -38,7 +38,7 @@ class PaymentCreateView(generics.CreateAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
     # authentication_classes = [CsrfExemptSessionAuthentication] # FOR DEMO PURPOSES ONLY
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
