@@ -30,8 +30,11 @@ class PaymentListView(generics.ListAPIView):
     serializer_class = PaymentSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        return Payment.objects.filter(user=self.request.user)
 
-class PaymentCreateView(generics.ListCreateAPIView):
+
+class PaymentCreateView(generics.CreateAPIView):
     queryset = Payment.objects.all()
     serializer_class = PaymentSerializer
     # authentication_classes = [CsrfExemptSessionAuthentication] # FOR DEMO PURPOSES ONLY
@@ -110,6 +113,9 @@ def xendit_webhook(request):
             payment.paid_at = payload['paid_at']
             payment.payment_method = payload['payment_method']
             payment.save()
+
+            payment.user.permission_class = 'SUBSCRIBED'
+            payment.user.save()
 
         elif payload['status'] == 'EXPIRED':
             payment.status = payment.paid_at = payment.payment_method = 'EXPIRED'
